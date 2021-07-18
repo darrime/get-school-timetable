@@ -1,11 +1,12 @@
 import time
 from selenium import webdriver as wd
 
-#백그라운드 작업
+# 백그라운드 작업
 option = wd.ChromeOptions()
 option.add_argument("headless")
 
 browser = wd.Chrome(options=option)
+#https로 접속 불가
 browser.get("http://112.186.146.81:4082/st#")
 
 elem = browser.find_element_by_id("sc")
@@ -39,10 +40,3 @@ for i in range(1, 8):
     fri[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[6]').text[0:2]
 
 browser.quit()
-
-
-
-
-
-
-
