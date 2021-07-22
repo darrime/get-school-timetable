@@ -17,7 +17,7 @@ def run_jscode(jscode):
     time.sleep(0.1)
 
 
-# 딜레이 함수 추가
+# 효율적인 딜레이 함수
 def get_delay():
     wait = WebDriverWait(browser, 10).until(
         ex.presence_of_element_located((By.XPATH, '//*[@id="학교명단검색"]/tbody/tr[2]/td[1]')))
@@ -44,23 +44,26 @@ except:
 # 자바스크립트 코드 목록
 js_code = ['sc_disp(82294)', 'bas = document.getElementById("ba")', 'bas.value = "3-6"', 'ba_change()']
 
-# 효율적인 코드 구현
+# 자바스크립트 코드 실행
 for i in js_code:
     run_jscode(i)
 
-mon = {1: 'value', 2: 'value', 3: 'value', 4: 'value', 5: 'value', 6: 'value', 7: 'value'}
-tue = {1: 'value', 2: 'value', 3: 'value', 4: 'value', 5: 'value', 6: 'value', 7: 'value'}
-wen = {1: 'value', 2: 'value', 3: 'value', 4: 'value', 5: 'value', 6: 'value', 7: 'value'}
-thr = {1: 'value', 2: 'value', 3: 'value', 4: 'value', 5: 'value', 6: 'value', 7: 'value'}
-fri = {1: 'value', 2: 'value', 3: 'value', 4: 'value', 5: 'value', 6: 'value', 7: 'value'}
+class_list = {
+    '월': ['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7'],
+    '화': ['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7'],
+    '수': ['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7'],
+    '목': ['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7'],
+    '금': ['class1', 'class2', 'class3', 'class4', 'class5', 'class6', 'class7'],
+}
 
-# 딕셔너리 자료형으로 코드 간소화 예정
-for i in range(1, 8):
-    mon[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[2]').text[0:2]
-    tue[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[3]').text[0:2]
-    wen[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[4]').text[0:2]
-    thr[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[5]').text[0:2]
-    fri[i] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{i + 2}]/td[6]').text[0:2]
+for k, i in enumerate(class_list.keys(), 2):
+    for j in range(0, 6):
+        class_list[i][j] = browser.find_element_by_xpath(f'//*[@id="hour"]/table/tbody/tr[{j + 3}]/td[{k}]').text[0:2]
 
-print(mon[1])
+
+# 수업 과목 구하는 함수
+def get_classes(day: str, time: int):
+    return class_list[day][time - 1]
+
+
 browser.quit()
