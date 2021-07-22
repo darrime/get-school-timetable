@@ -1,10 +1,11 @@
 import time
+from secret_var import *
 from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ex
 
-# 백그라운드 작업
+# 백그라운드 옵션(Headless)
 option = wd.ChromeOptions()
 option.add_argument("headless")
 
@@ -27,11 +28,12 @@ def get_delay():
 # https로 접속 불가한 사이트
 browser.get("http://112.186.146.81:4082/st#")
 
+#검색 바
 elem = browser.find_element_by_id("sc")
 button = browser.find_element_by_xpath('//*[@id="학교찾기"]/table[1]/tbody/tr[2]/td[2]/input[2]')
 
 elem.click()
-elem.send_keys("퇴계원중학교")
+elem.send_keys(school_name)
 button.click()
 
 # 효율적인 딜레이 구현
@@ -42,7 +44,7 @@ except:
     print("failed")
 
 # 자바스크립트 코드 목록
-js_code = ['sc_disp(82294)', 'bas = document.getElementById("ba")', 'bas.value = "3-6"', 'ba_change()']
+js_code = [school_code, 'bas = document.getElementById("ba")', f'bas.value = "{class_num}"', 'ba_change()']
 
 # 자바스크립트 코드 실행
 for i in js_code:
