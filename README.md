@@ -1,9 +1,10 @@
 # get-school-timetable  
 컴시간알리미 크롤링 라이브러리(Python)  
-selenium과 Chrome Webdriver, pathos(멀티프로세싱, 필수 아님)를 필요로 합니다.  
+selenium과 Chrome Webdriver를 필요로 합니다.  
+추가적으로 멀티프로세싱은 pathos(멀티프로세싱, 필수 아님)를 필요로 합니다.
   
 ## 주의!! loading_timetable 함수 2번 이상 사용시 멀티프로세싱 사용 필수
-selenium webdriver가 single core라서 2번 이상 호출시 에러..  
+그냥 2개 이상 하면 그중에 하나만 됩니다..
 
   
 ## install selenium
@@ -20,7 +21,7 @@ pip install pathos
 ```
 from getTime import loading_timetable
 
-# 중학교 이름 정확히/학년-반 순으로
+# 학교 이름 정확히/학년-반 순으로
 sub_list = loading_timetable('퇴계원중학교', '3-6')
 
 # 배열이 아닌 딕셔너리(배열을 포함한 딕셔너리). 첫번째 key값은 '월', '화', '수' 등으로 입력.
