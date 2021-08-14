@@ -2,14 +2,16 @@
 컴시간알리미 크롤링 라이브러리(Python)  
 Chrome Webdriver를 필요로 합니다.  
 추가적으로 멀티프로세싱은 pathos(멀티프로세싱, 필수 아님)를 필요로 합니다.
-  
-## 주의!! loading_timetable 함수 2번 이상 사용시 멀티프로세싱 사용 필수
-그냥 2개 이상 하면 그중에 하나만 됩니다..
 
+## 설치
 ```
 pip install get_class_subject
 ```
   
+## 주의!! loading_timetable 함수 2번 이상 사용시 멀티프로세싱 사용 필수
+그냥 2개 이상 하면 그중에 하나만 됩니다..
+
+
 
 
 ## 사용 예시
