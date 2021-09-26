@@ -41,7 +41,7 @@ class getSchoolTime:
         # 효율적인 딜레이 구현
         try:
             self.set_delay()
-        except:
+        except Exception:
             print("failed")
 
         # 자바스크립트 코드 목록
